@@ -1,17 +1,28 @@
 import type { Config } from "tailwindcss";
 
+//export default {
+  //darkMode: ["class"],
+  //content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  //prefix: "",
+  //theme: {
+       	//container: {
+  		//center: true,
+  		//padding: '1rem',
+  		//screens: {
+  			//'2xl': '1400px'
+  		//}
+  	//},
+
 export default {
-  darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
-  prefix: "",
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
-       	container: {
-  		center: true,
-  		padding: '1rem',
-  		screens: {
-  			'2xl': '1400px'
-  		}
-  	},
+    extend: {
+      backgroundImage: {
+        'app-bg': "url('/images/background.png')",
+      },
+    },
+  },
+
   	extend: {
   		fontFamily: {
   			sans: [
