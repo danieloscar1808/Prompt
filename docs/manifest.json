@@ -10,10 +10,6 @@
       "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
-<<<<<<< HEAD
-=======
-      <!--"purpose": "maskable"-->
->>>>>>> 3ba20619979b42331411d1565f39fda1b0461db1
     },
     {
       "src": "icons/icon-512.png",
