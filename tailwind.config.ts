@@ -5,17 +5,12 @@ export default {
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
-     extend: {
-      backgroundImage: {
-        'app-bg': "url('/images/background.png')",
-      },
-    },
-  	//container: {
-  		//center: true,
-  		//padding: '1rem',
-  		//screens: {
-  			//'2xl': '1400px'
-  		//}
+       	container: {
+  		center: true,
+  		padding: '1rem',
+  		screens: {
+  			'2xl': '1400px'
+  		}
   	},
   	extend: {
   		fontFamily: {
