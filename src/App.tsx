@@ -20,13 +20,20 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {/* ✔ IMPORTANTE PARA QUE FUNCIONE EN GITHUB PAGES */}
+
+        {/* ✔ IMPORTANTE PARA GITHUB PAGES */}
         <BrowserRouter basename="/Prompt">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+
+          {/* ✔ AQUÍ AGREGO EL FONDO GLOBAL */}
+          <div className="min-h-screen bg-app-bg bg-cover bg-center bg-no-repeat">
+
+            <Routes>
+              <Route path="/" element={<Index />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
