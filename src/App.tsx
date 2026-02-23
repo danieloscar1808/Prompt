@@ -7,6 +7,9 @@ import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// ✔ IMPORTANTE: importá el botón flotante
+import InstallButton from "@/components/pwa/InstallButton";
+
 const queryClient = new QueryClient();
 
 const App = () => (

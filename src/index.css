@@ -429,5 +429,83 @@
 .glass-animate {
   animation: glass-fade-in 0.25s cubic-bezier(0.16,1,0.3,1) forwards;
 }
+@layer components {
 
+  .install-button-glass {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--glass-border-strong);
+    border-radius: 0.9rem;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: glass-fade-in 0.25s ease forwards;
+  }
+
+  .install-button-glass:hover {
+    background: hsla(0,0%,100%,0.50);
+    transform: translateY(-2px);
+    border-color: hsla(0,0%,100%,0.65);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.32);
+  }
+
+  .install-button-glass:active {
+    transform: scale(0.97);
+  }
+}
+@layer components {
+  .fab-install-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+
+    padding: 0.85rem 1.4rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    cursor: pointer;
+
+    /* GLASS EFFECT */
+    background: hsla(0, 0%, 100%, 0.28);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid hsla(0, 0%, 100%, 0.45);
+    color: #ffffff;
+
+    /* SOMBRA PREMIUM */
+    box-shadow: 0 10px 32px rgba(0,0,0,0.3);
+
+    /* ANIMACIÓN DE ENTRADA */
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fab-appear 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
+
+    transition: all 0.25s ease;
+  }
+
+  .fab-install-button:hover {
+    background: hsla(0, 0%, 100%, 0.38);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fab-appear {
+    from {
+      opacity: 0;
+      transform: translateY(22px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
 }
