@@ -1,6 +1,1 @@
-self.addEventListener("install", e => {
-  e.waitUntil(caches.open("prompt-cache-v1").then(cache => cache.addAll(["./"])));
-});
-self.addEventListener("fetch", e => {
-  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-});
+if(!self.define){let e,i={};const s=(s,n)=>(s=new URL(s+".js",n).href,i[s]||new Promise(i=>{if("document"in self){const e=document.createElement("script");e.src=s,e.onload=i,document.head.appendChild(e)}else e=s,importScripts(s),i()}).then(()=>{let e=i[s];if(!e)throw new Error(`Module ${s} didn’t register its module`);return e}));self.define=(n,r)=>{const o=e||("document"in self?document.currentScript.src:"")||location.href;if(i[o])return;let t={};const c=e=>s(e,o),l={module:{uri:o},exports:t,require:c};i[o]=Promise.all(n.map(e=>l[e]||c(e))).then(e=>(r(...e),t))}}define(["./workbox-8c29f6e4"],function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"registerSW.js",revision:"402b66900e731ca748771b6fc5e7a068"},{url:"placeholder.svg",revision:"35707bd9960ba5281c72af927b79291f"},{url:"index.html",revision:"f51c8960499b841016de05816c9d54ca"},{url:"favicon.ico",revision:"9f504444f85a5af2eef9264b02ae40be"},{url:"images/background.png",revision:"b4305d1f83ce16e0e6ae2503f15b18a3"},{url:"assets/index-BR-DCTus.css",revision:null},{url:"assets/index-B9jGtabS.js",revision:null},{url:"manifest.webmanifest",revision:"b1d750e6f8532aa0e0095c176d0c3b48"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html")))});
