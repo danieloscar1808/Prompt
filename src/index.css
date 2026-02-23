@@ -94,9 +94,7 @@
   .dark {
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
-    /* (El resto de variables dark se mantienen igual
-       — tu archivo original ya estaba correcto) */
-  }
+      }
 
   * {
     @apply border-border;
