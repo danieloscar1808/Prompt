@@ -66,6 +66,17 @@
     --shadow-2xl: 0 1px 3px hsl(0 0% 0% / 0.25);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
+    --glass-bg: hsla(0, 0%, 100%, 0.25);
+    --glass-border: hsla(0, 0%, 100%, 0.25);
+    --glass-blur: 16px;
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --glass-bg: hsla(0, 0%, 100%, 0.18);
+    --glass-bg-strong: hsla(0, 0%, 100%, 0.38);
+    --glass-border: hsla(0, 0%, 100%, 0.26);
+    --glass-border-strong: hsla(0, 0%, 100%, 0.45);
+    --glass-blur: 18px;
+    --glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    --glass-radius: 0.9rem;
   }
 
   .dark {
@@ -92,6 +103,17 @@
     --border: 215 19% 34%;
     --input: 215 19% 34%;
     --ring: 198 93% 59%;
+    --glass-bg: hsla(0, 0%, 100%, 0.25);
+    --glass-border: hsla(0, 0%, 100%, 0.25);
+    --glass-blur: 16px;
+    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --glass-bg: hsla(0, 0%, 100%, 0.18);
+    --glass-bg-strong: hsla(0, 0%, 100%, 0.38);
+    --glass-border: hsla(0, 0%, 100%, 0.26);
+    --glass-border-strong: hsla(0, 0%, 100%, 0.45);
+    --glass-blur: 18px;
+    --glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+    --glass-radius: 0.9rem;
   }
 
   * {
@@ -170,4 +192,242 @@
     color: #000000 !important;
     border-radius: 0.5rem;
   }
+}
+
+@layer components {
+  /* Estilo global para todos los triggers de Select, Dropdown, Popover, Combobox */
+  .select-trigger,
+  .dropdown-trigger,
+  .popover-trigger,
+  .command-trigger,
+  [data-radix-trigger] {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid hsl(0 0% 80%);
+    border-radius: 0.75rem;
+    padding: 0.60rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+
+  /* Hover premium */
+  .select-trigger:hover,
+  .dropdown-trigger:hover,
+  .popover-trigger:hover,
+  .command-trigger:hover,
+  [data-radix-trigger]:hover {
+    border-color: hsl(0 0% 60%);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background-color: #fafafa !important;
+  }
+
+  /* Estado activo cuando el menú está abierto */
+  [data-state="open"].select-trigger,
+  [data-state="open"].dropdown-trigger,
+  [data-state="open"].popover-trigger,
+  [data-state="open"][data-radix-trigger] {
+    border-color: hsl(215 15% 65%);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  }
+
+  /* Animación del ícono del trigger (flecha) */
+  .trigger-icon {
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  [data-state="open"] .trigger-icon {
+    transform: rotate(180deg);
+  }
+}
+
+@layer components {
+
+  /* TRIGGER GLASS EFFECT */
+  .select-trigger,
+  .dropdown-trigger,
+  .popover-trigger,
+  .command-trigger,
+  [data-radix-trigger] {
+    background: var(--glass-bg) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--glass-border);
+    border-radius: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--glass-shadow);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* HOVER GLASS */
+  .select-trigger:hover,
+  .dropdown-trigger:hover,
+  .popover-trigger:hover,
+  .command-trigger:hover,
+  [data-radix-trigger]:hover {
+    background: hsla(0, 0%, 100%, 0.35) !important;
+    border-color: hsla(0, 0%, 100%, 0.45);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  /* ESTADO: MENÚ ABIERTO */
+  [data-state="open"].select-trigger,
+  [data-state="open"].dropdown-trigger,
+  [data-state="open"].popover-trigger,
+  [data-state="open"][data-radix-trigger] {
+    background: hsla(0, 0%, 100%, 0.40) !important;
+    border-color: hsla(0, 0%, 100%, 0.60);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ICON ANIMATION */
+  .trigger-icon {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  [data-state="open"] .trigger-icon {
+    transform: rotate(180deg);
+  }
+
+  /* GLASS MENU PANEL */
+  .popover-content,
+  .dropdown-menu,
+  .select-content,
+  .command-list,
+  .menu-content,
+  [data-radix-popper-content-wrapper] {
+    background: hsla(0, 0%, 100%, 0.70) !important;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 0.75rem;
+    border: 1px solid hsla(0, 0%, 100%, 0.40);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.20);
+    animation: dropdown-fade-slide 0.20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Hover de items en glass panel */
+  .command-item:hover,
+  .command-item[data-highlighted="true"],
+  .select-item[data-state="active"],
+  .dropdown-menu-item:hover {
+    background: hsla(0, 0%, 100%, 0.45) !important;
+    backdrop-filter: blur(22px);
+    color: #000000 !important;
+    border-radius: 0.5rem;
+  }
+
+  @layer components {
+
+  /* CARDS GLASS */
+  .card-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--glass-radius);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 1rem;
+  }
+
+  /* PANEL GLASS (ideal para contenedores grandes) */
+  .panel-glass {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+    -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+    border: 1px solid var(--glass-border-strong);
+    border-radius: calc(var(--glass-radius) + 0.25rem);
+    padding: 1.2rem;
+    box-shadow: var(--glass-shadow);
+  }
+}
+@layer components {
+  .input-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--glass-radius);
+    border: 1px solid var(--glass-border);
+    padding: 0.65rem 0.85rem;
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .input-glass:focus {
+    background: var(--glass-bg-strong);
+    border-color: var(--glass-border-strong);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.12);
+  }
+}
+
+@layer components {
+  .btn-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);
+    padding: 0.65rem 1rem;
+    color: #ffffff;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+
+  .btn-glass:hover {
+    background: var(--glass-bg-strong);
+    border-color: var(--glass-border-strong);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.28);
+  }
+
+  .btn-glass:active {
+    transform: scale(0.98);
+  }
+}
+@layer components {
+  .sidebar-glass {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(calc(var(--glass-blur) + 4px));
+    border-right: 1px solid var(--glass-border-strong);
+    box-shadow: 8px 0 30px rgba(0,0,0,0.18);
+  }
+}
+@layer components {
+  .textarea-glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--glass-radius);
+    padding: 0.85rem;
+    color: #ffffff;
+    transition: all 0.2s ease;
+    min-height: 160px;
+  }
+}
+@layer components {
+  .glass-border {
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);
+    backdrop-filter: blur(var(--glass-blur));
+  }
+}
+@keyframes glass-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.glass-animate {
+  animation: glass-fade-in 0.25s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
 }
