@@ -60,5 +60,10 @@ export default defineConfig({
         navigateFallback: "index.html"
       }
     })
-  ]
+  ],
+  resolve: {
+      alias: {
+      "@": "/src"
+    }
+  }
 });
