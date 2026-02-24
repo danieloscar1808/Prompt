@@ -9,9 +9,7 @@ export default function InstallButton() {
 
   useEffect(() => {
     const handler = (e: any) => {
-      // Solo mostrar si estamos en GitHub Pages
-      if (!isGithub) return;
-
+      if (!isGithub) return; // Mostrar solo en GitHub Pages
       e.preventDefault();
       setDeferredPrompt(e);
       setVisible(true);
@@ -34,7 +32,7 @@ export default function InstallButton() {
     }
   };
 
-  // Si ya está instalada, no mostrar el botón
+  // Si ya está instalada, ocultar botón
   useEffect(() => {
     if (window.matchMedia("(display-mode: standalone)").matches) {
       setVisible(false);
@@ -42,15 +40,13 @@ export default function InstallButton() {
     }
   }, []);
 
+  // No mostrar si ya está instalada o no está en GitHub
   if (!visible || !isGithub || localStorage.getItem("pwa-installed") === "true") {
     return null;
   }
 
   return (
-    <button
-      onClick={installApp}
-      className="install-button-glass"
-    >
+    <button onClick={installApp} className="fab-install-button">
       Instalar App
     </button>
   );
