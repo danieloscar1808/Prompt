@@ -12,22 +12,14 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem={false}
-      storageKey="prompt-builder-theme"
-    >
       <TooltipProvider>
         <Sonner />  {/* Sonner oficial, limpio y sin conflictos */}
-        
         <BrowserRouter basename="/Prompt">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-
         <InstallButton />
       </TooltipProvider>
     </ThemeProvider>
