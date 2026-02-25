@@ -13,6 +13,8 @@ export default defineConfig({
 
     VitePWA({
       registerType: "autoUpdate",
+      injectRegister: null,   // 👈 evita crear sw-disabled.js
+      disable: false,         // 👈 evita que genere builds extra
 
   // Desactiva realmente el service worker
   strategies: "injectManifest",
