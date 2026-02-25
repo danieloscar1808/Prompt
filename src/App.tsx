@@ -11,8 +11,6 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Sonner />
-
       <BrowserRouter basename="/Prompt">
         <Routes>
           <Route path="/" element={<Index />} />
