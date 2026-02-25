@@ -1,144 +1,26 @@
 import { useState, useMemo } from "react";
-import {
-  User,
-  Target,
-  FileText,
-  Ban,
-  LayoutList,
-  RotateCcw,
-  ChevronDown,
-  Sparkles,
-  Brain,
-} from "lucide-react";
+import { User, Target, FileText, Ban, LayoutList, RotateCcw, ChevronDown, Sparkles, Brain, Mic } from "lucide-react";
+
 import { Header } from "@/components/Header";
 import { PromptField } from "@/components/PromptField";
 import { PromptPreview } from "@/components/PromptPreview";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
-const ROL_OPTIONS = [
-  "Experto en",
-  "Crítico/Revisor",
-  "Tutor/Mentor",
-  "Redactor Creativo",
-  "Analista de Datos",
-  "Traductor/Localizador",
-  "Programador Senior",
-  "Consultor Estratégico",
-  "Entrevistador/Reclutador",
-  "Editor de Estilo",
-];
-
-const TAREA_OPTIONS = [
-  "Crear",
-  "Redactar",
-  "Analizar",
-  "Resumir",
-  "Traducir",
-  "Explicar",
-  "Comparar",
-  "Generar ideas",
-  "Corregir",
-  "Optimizar",
-  "Investigar",
-];
-
+const ROL_OPTIONS = ["Experto en", "Crítico/Revisor", "Tutor/Mentor", "Redactor Creativo"];
+const TAREA_OPTIONS = ["Crear", "Redactar", "Analizar", "Resumir", "Traducir"];
 const METODO_OPTIONS = [
-  {
-    label: "Paso a paso (Chain of Thought)",
-    value:
-      "Explica y piensa paso a paso antes de dar tu respuesta final",
-  },
-  {
-    label: "3 soluciones (Tree of Thoughts)",
-    value:
-      "Imagina 3 soluciones diferentes, evalúa los pros y contras de cada una y selecciona la más eficiente",
-  },
-  {
-    label: "Planifica y ejecuta (Plan And Solve)",
-    value:
-      "Primero planifica tu enfoque detalladamente y luego ejecuta el plan paso a paso",
-  },
-  {
-    label: "Reflexiona antes (Thinking)",
-    value:
-      "Reflexiona un tiempo sobre las posibles fallas en tu lógica antes de responder",
-  },
+  { label: "Paso a paso (Chain of Thought)", value: "Explica y piensa paso a paso antes de dar tu respuesta final" },
+  { label: "3 soluciones (Tree of Thoughts)", value: "Imagina 3 soluciones diferentes y elige la mejor" },
 ];
-
-const CONTEXTO_OPTIONS = [
-  "para una empresa pequeña",
-  "para estudiantes",
-  "para redes sociales",
-  "para un blog",
-  "para una presentación",
-  "para un informe académico",
-  "para un público técnico",
-  "para principiantes",
-  "en español latinoamericano",
-  "con tono profesional",
-];
-
-const RESTRICCIONES_OPTIONS = [
-  "evitar jerga técnica",
-  "máximo 200 palabras",
-  "sin listas",
-  "solo respuestas cortas",
-  "no usar ejemplos",
-  "sin repeticiones",
-  "evitar superlativos",
-  "sin citas textuales",
-  "lenguaje simple",
-  "sin emojis",
-];
-
-const FORMAT_OPTIONS = [
-  "Resumen Ejecutivo",
-  "Informe Estructurado",
-  "Informe Técnico",
-  "Análisis Comparativo",
-  "Preguntas y Respuestas",
-  "Guion de Presentación",
-  "Tablas Markdown",
-  "Listas Jerárquicas",
-  "Diagrama de Flujo",
-  "Análisis FODA",
-  "Markdown (.md)",
-  "JSON / XML",
-  "CSV",
-  "Código LaTeX",
-  "HTML",
-];
+const CONTEXTO_OPTIONS = ["para estudiantes", "para principiantes", "para una empresa pequeña"];
+const RESTRICCIONES_OPTIONS = ["máximo 200 palabras", "lenguaje simple", "evitar tecnicismos"];
+const FORMAT_OPTIONS = ["Resumen Ejecutivo", "Tabla Markdown", "HTML"];
 
 const AI_OPTIONS = [
-  {
-    name: "ChatGPT",
-    icon: "🤖",
-    description:
-      "Formato estructurado con Markdown y etiquetas en negrita",
-  },
-  {
-    name: "Gemini",
-    icon: "✨",
-    description: "Estilo conversacional y natural",
-  },
-  {
-    name: "Copilot",
-    icon: "🚀",
-    description:
-      "Formato técnico con etiquetas entre corchetes [TAG]",
-  },
+  { name: "ChatGPT", icon: "🤖", description: "Formato estructurado con Markdown" },
+  { name: "Gemini", icon: "✨", description: "Estilo conversacional y natural" },
+  { name: "Copilot", icon: "🚀", description: "Formato técnico con etiquetas" }
 ];
 
 interface PromptFields {
@@ -150,52 +32,22 @@ interface PromptFields {
   formato: string;
 }
 
-const generatePrompt = (fields: PromptFields, aiName: string): string => {
+const generatePrompt = (fields: PromptFields, ai: string): string => {
   const parts: string[] = [];
 
-  if (aiName === "ChatGPT") {
-    if (fields.rol.trim()) parts.push(`Eres ${fields.rol.trim()}.`);
-    if (fields.tarea.trim()) parts.push(`**Tarea:** ${fields.tarea.trim()}`);
-    if (fields.metodo.trim()) parts.push(`**Método:** ${fields.metodo.trim()}`);
-    if (fields.contexto.trim())
-      parts.push(`**Contexto:** ${fields.contexto.trim()}`);
-    if (fields.restricciones.trim())
-      parts.push(`**Restricciones:** ${fields.restricciones.trim()}`);
-    if (fields.formato.trim())
-      parts.push(`**Formato esperado:** ${fields.formato.trim()}`);
-  }
-
-  else if (aiName === "Gemini") {
-    if (fields.rol.trim())
-      parts.push(`Quiero que actúes como ${fields.rol.trim()}.`);
-    if (fields.contexto.trim())
-      parts.push(`Para darte contexto: ${fields.contexto.trim()}`);
-    if (fields.tarea.trim())
-      parts.push(`Necesito que ${fields.tarea.trim()}.`);
-    if (fields.metodo.trim()) parts.push(fields.metodo.trim());
-    if (fields.restricciones.trim())
-      parts.push(
-        `Ten en cuenta estas restricciones: ${fields.restricciones.trim()}`
-      );
-    if (fields.formato.trim())
-      parts.push(`Por favor, presenta la respuesta en: ${fields.formato.trim()}`);
-  }
-
-  else if (aiName === "Copilot") {
-    if (fields.rol.trim()) parts.push(`[ROL] ${fields.rol.trim()}`);
-    if (fields.tarea.trim()) parts.push(`[OBJETIVO] ${fields.tarea.trim()}`);
-    if (fields.metodo.trim()) parts.push(`[MÉTODO] ${fields.metodo.trim()}`);
-    if (fields.contexto.trim())
-      parts.push(`[CONTEXTO] ${fields.contexto.trim()}`);
-    if (fields.restricciones.trim())
-      parts.push(`[RESTRICCIONES] ${fields.restricciones.trim()}`);
-    if (fields.formato.trim()) parts.push(`[OUTPUT] ${fields.formato.trim()}`);
+  if (ai === "ChatGPT") {
+    if (fields.rol) parts.push(`Eres ${fields.rol}.`);
+    if (fields.tarea) parts.push(`**Tarea:** ${fields.tarea}`);
+    if (fields.metodo) parts.push(`**Método:** ${fields.metodo}`);
+    if (fields.contexto) parts.push(`**Contexto:** ${fields.contexto}`);
+    if (fields.restricciones) parts.push(`**Restricciones:** ${fields.restricciones}`);
+    if (fields.formato) parts.push(`**Formato esperado:** ${fields.formato}`);
   }
 
   return parts.join("\n\n");
 };
 
-const Index = () => {
+export default function Index() {
   const [selectedAI, setSelectedAI] = useState(AI_OPTIONS[0]);
   const [fields, setFields] = useState<PromptFields>({
     rol: "",
@@ -203,21 +55,14 @@ const Index = () => {
     metodo: "",
     contexto: "",
     restricciones: "",
-    formato: "",
+    formato: ""
   });
 
   const updateField = (field: keyof PromptFields) => (value: string) =>
     setFields((prev) => ({ ...prev, [field]: value }));
 
   const resetFields = () =>
-    setFields({
-      rol: "",
-      tarea: "",
-      metodo: "",
-      contexto: "",
-      restricciones: "",
-      formato: "",
-    });
+    setFields({ rol: "", tarea: "", metodo: "", contexto: "", restricciones: "", formato: "" });
 
   const generatedPrompt = useMemo(
     () => generatePrompt(fields, selectedAI.name),
@@ -228,314 +73,92 @@ const Index = () => {
 
   return (
     <div
-      className="min-h-screen pb-6 sm:pb-8 bg-cover bg-center bg-fixed bg-no-repeat"
+      className="min-h-screen px-4 pb-10 sm:pb-16 bg-cover bg-center bg-fixed relative"
       style={{ backgroundImage: "url('/images/background.png')" }}
     >
+      {/* Glow futurista */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/20 via-purple-500/10 to-transparent blur-3xl" />
+
       <Header />
 
-      <main className="px-3 sm:px-4 max-w-lg mx-auto space-y-3 sm:space-y-4 animate-fade-in">
-        
-        {/* AI Selector */}
-        <div className="flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02]">
-          <Sparkles size={16} className="text-primary animate-pulse" />
-          <span className="text-base text-foreground font-serif">
-            Optimizar para:
-          </span>
+      <main className="relative max-w-xl mx-auto space-y-6 z-10">
 
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="gap-2 bg-white border-border shadow-sm hover:shadow-md"
-                    >
-                      <span>{selectedAI.icon}</span>
-                      <span>{selectedAI.name}</span>
-                      <ChevronDown size={14} />
-                    </Button>
-                  </DropdownMenuTrigger>
+        {/* AI SELECTOR */}
+        <div className="glass p-4 rounded-2xl text-center shadow-xl">
+          <div className="flex items-center justify-center gap-2">
+            <Sparkles className="text-primary animate-pulse" size={20} />
+            <span className="text-lg font-semibold text-white/90">Optimizar para:</span>
+          </div>
 
-                  <DropdownMenuContent
-                    align="center"
-                    className="bg-white border border-border shadow-lg"
-                  >
-                    {AI_OPTIONS.map((ai) => (
-                      <DropdownMenuItem
-                        key={ai.name}
-                        onClick={() => setSelectedAI(ai)}
-                        className="cursor-pointer flex-col items-start gap-1 hover:bg-gray-100"
-                      >
-                        <div className="flex items-center gap-2">
-                          <span>{ai.icon}</span>
-                          <span className="font-medium">{ai.name}</span>
-                        </div>
-                        <span className="text-xs text-muted-foreground">
-                          {ai.description}
-                        </span>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TooltipTrigger>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="lg"
+                className="mt-3 glass-btn text-white gap-2 w-full justify-center"
+              >
+                <span>{selectedAI.icon}</span>
+                <span>{selectedAI.name}</span>
+                <ChevronDown size={16} className="opacity-80" />
+              </Button>
+            </DropdownMenuTrigger>
 
-              <TooltipContent side="bottom" className="max-w-xs text-center">
-                <p className="font-medium mb-1">Formato según IA:</p>
-                <p className="text-xs text-muted-foreground">
-                  {selectedAI.description}
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+            <DropdownMenuContent align="center" className="glass p-2 w-52">
+              {AI_OPTIONS.map((ai) => (
+                <DropdownMenuItem
+                  key={ai.name}
+                  onClick={() => setSelectedAI(ai)}
+                  className="cursor-pointer rounded-md hover:bg-white/20 transition"
+                >
+                  {ai.icon} {ai.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
-        {/* Prompt Fields */}
-        <PromptField
-          label="Rol"
-          placeholder="Ej: un experto en marketing digital..."
-          description="¿Qué papel debe asumir la IA?"
-          value={fields.rol}
-          onChange={updateField("rol")}
-          icon={<User size={18} />}
-          descriptionAction={
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-6 w-6 hover:shadow"
-                >
-                  <ChevronDown size={14} />
-                </Button>
-              </DropdownMenuTrigger>
+        {/* FORM CARDS */}
+        <div className="glass rounded-2xl p-6 space-y-6 shadow-2xl">
+          <PromptField label="Rol" placeholder="Ej: experto en marketing..." value={fields.rol} onChange={updateField("rol")} icon={<User />} />
+          <PromptField label="Tarea" placeholder="Ej: crear un plan..." value={fields.tarea} onChange={updateField("tarea")} icon={<Target />} />
+          <PromptField label="Método" placeholder="Selecciona técnica..." value={fields.metodo} onChange={updateField("metodo")} icon={<Brain />} />
+          <PromptField label="Contexto" placeholder="Ej: para una tienda..." value={fields.contexto} onChange={updateField("contexto")} icon={<FileText />} />
+          <PromptField label="Restricciones" placeholder="Ej: lenguaje simple..." value={fields.restricciones} onChange={updateField("restricciones")} icon={<Ban />} />
+          <PromptField label="Formato" placeholder="Ej: tabla markdown..." value={fields.formato} onChange={updateField("formato")} icon={<LayoutList />} />
 
-              <DropdownMenuContent className="max-h-64 overflow-y-auto bg-white border shadow-lg">
-                {ROL_OPTIONS.map((rol) => (
-                  <DropdownMenuItem
-                    key={rol}
-                    onClick={() =>
-                      updateField("rol")(fields.rol ? `${fields.rol}, ${rol}` : rol)
-                    }
-                  >
-                    {rol}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          }
-        />
+          {/* RESET */}
+          <Button
+            variant={isEmpty ? "outline" : "destructive"}
+            disabled={isEmpty}
+            onClick={resetFields}
+            className="w-full mt-2 glass-btn text-white"
+          >
+            <RotateCcw size={16} className="mr-2" /> Limpiar todo
+          </Button>
+        </div>
 
-        <PromptField
-          label="Tarea"
-          placeholder="Ej: crear un plan de contenido mensual..."
-          description="¿Qué quieres que haga la IA?"
-          value={fields.tarea}
-          onChange={updateField("tarea")}
-          icon={<Target size={18} />}
-          descriptionAction={
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-6 w-6 hover:shadow"
-                >
-                  <ChevronDown size={14} />
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent className="max-h-64 overflow-y-auto bg-white border shadow-lg">
-                {TAREA_OPTIONS.map((tarea) => (
-                  <DropdownMenuItem
-                    key={tarea}
-                    onClick={() =>
-                      updateField("tarea")(
-                        fields.tarea ? `${fields.tarea}, ${tarea}` : tarea
-                      )
-                    }
-                  >
-                    {tarea}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          }
-        />
-
-        <PromptField
-          label="Método de Instrucción"
-          placeholder="Selecciona una técnica de prompting..."
-          description="¿Cómo debe razonar la IA?"
-          value={fields.metodo}
-          onChange={updateField("metodo")}
-          icon={<Brain size={18} />}
-          descriptionAction={
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-6 w-6 hover:shadow"
-                >
-                  <ChevronDown size={14} />
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent className="max-h-64 overflow-y-auto bg-white border shadow-lg w-72">
-                {METODO_OPTIONS.map((metodo) => (
-                  <DropdownMenuItem
-                    key={metodo.label}
-                    onClick={() => updateField("metodo")(metodo.value)}
-                    className="flex-col items-start"
-                  >
-                    <span className="font-medium">{metodo.label}</span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          }
-        />
-
-        <PromptField
-          label="Contexto"
-          placeholder="Ej: para una tienda de ropa juvenil..."
-          description="Información adicional relevante"
-          value={fields.contexto}
-          onChange={updateField("contexto")}
-          icon={<FileText size={18} />}
-          descriptionAction={
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-6 w-6 hover:shadow"
-                >
-                  <ChevronDown size={14} />
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent className="max-h-64 overflow-y-auto bg-white border shadow-lg">
-                {CONTEXTO_OPTIONS.map((contexto) => (
-                  <DropdownMenuItem
-                    key={contexto}
-                    onClick={() =>
-                      updateField("contexto")(
-                        fields.contexto
-                          ? `${fields.contexto}, ${contexto}`
-                          : contexto
-                      )
-                    }
-                  >
-                    {contexto}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          }
-        />
-
-        <PromptField
-          label="Restricciones"
-          placeholder="Ej: no uses jerga técnica, evita listas largas..."
-          description="¿Qué debe evitar la IA?"
-          value={fields.restricciones}
-          onChange={updateField("restricciones")}
-          icon={<Ban size={18} />}
-          descriptionAction={
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-6 w-6 hover:shadow"
-                >
-                  <ChevronDown size={14} />
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent className="max-h-64 overflow-y-auto bg-white border shadow-lg">
-                {RESTRICCIONES_OPTIONS.map((r) => (
-                  <DropdownMenuItem
-                    key={r}
-                    onClick={() =>
-                      updateField("restricciones")(
-                        fields.restricciones
-                          ? `${fields.restricciones}, ${r}`
-                          : r
-                      )
-                    }
-                  >
-                    {r}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          }
-        />
-
-        <PromptField
-          label="Formato"
-          placeholder="Ej: lista con viñetas, máximo 5 puntos..."
-          description="¿Cómo quieres la respuesta?"
-          value={fields.formato}
-          onChange={updateField("formato")}
-          icon={<LayoutList size={18} />}
-          descriptionAction={
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-6 w-6 hover:shadow"
-                >
-                  <ChevronDown size={14} />
-                </Button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent className="max-h-64 overflow-y-auto bg-white border shadow-lg">
-                {FORMAT_OPTIONS.map((format) => (
-                  <DropdownMenuItem
-                    key={format}
-                    onClick={() =>
-                      updateField("formato")(
-                        fields.formato
-                          ? `${fields.formato}, ${format}`
-                          : format
-                      )
-                    }
-                  >
-                    {format}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          }
-        />
-
-        <Button
-          variant={isEmpty ? "outline" : "destructive"}
-          onClick={resetFields}
-          disabled={isEmpty}
-          className={`w-full gap-2 transition-all duration-200 ${
-            isEmpty
-              ? "bg-white text-muted-foreground border"
-              : "bg-red-600 text-white hover:bg-red-700"
-          }`}
-        >
-          <RotateCcw
-            size={16}
-            className={isEmpty ? "" : "transition-transform hover:rotate-180"}
-          />
-          Limpiar todo
-        </Button>
-
+        {/* PREVIEW */}
         <PromptPreview prompt={generatedPrompt} isEmpty={isEmpty} />
       </main>
+
+      {/* Estilos Glass + Glow */}
+      <style>{`
+        .glass {
+          background: rgba(255,255,255,0.08);
+          backdrop-filter: blur(18px);
+          border: 1px solid rgba(255,255,255,0.18);
+        }
+        .glass-btn {
+          background: rgba(255,255,255,0.12);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(255,255,255,0.22);
+        }
+      `}</style>
+      <VoiceButton
+      isRecording={isRecording}
+      onStart={startRecording}
+      onStop={stopRecording}
+      />
     </div>
   );
-};
-
-export default Index;
+}
