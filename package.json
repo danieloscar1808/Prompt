@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && rmdir /S /Q docs && xcopy dist docs /E /I /Y",
+    "build": "vite build && node copy-dist.js",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
