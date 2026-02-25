@@ -15,7 +15,7 @@ const App = () => (
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
-      enableSystem
+      enableSystem={false}
       storageKey="prompt-builder-theme"
     >
       <TooltipProvider>
