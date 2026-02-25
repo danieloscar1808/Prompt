@@ -4,7 +4,7 @@ import InstallButton from "@/components/pwa/InstallButton";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip-light";
 import { Toaster } from "sonner"; // reemplazo limpio
 
 const queryClient = new QueryClient();
