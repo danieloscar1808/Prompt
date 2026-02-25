@@ -79,42 +79,7 @@
     --glass-radius: 0.9rem;
   }
 
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 217 32% 17%;
-    --card-foreground: 210 40% 98%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-    --primary: 198 93% 59%;
-    --primary-foreground: 204 80% 15%;
-    --secondary: 212 26% 83%;
-    --secondary-foreground: 228 84% 4%;
-    --muted: 215 16% 46%;
-    --muted-foreground: 210 40% 98%;
-    --accent: 228 84% 4%;
-    --accent-foreground: 215 20% 65%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 85% 97%;
-    --recording: 16 85% 50%;
-    --recording-glow: 16 80% 55%;
-    --success: 160 50% 40%;
-    --success-foreground: 0 0% 100%;
-    --border: 215 19% 34%;
-    --input: 215 19% 34%;
-    --ring: 198 93% 59%;
-    --glass-bg: hsla(0, 0%, 100%, 0.25);
-    --glass-border: hsla(0, 0%, 100%, 0.25);
-    --glass-blur: 16px;
-    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    --glass-bg: hsla(0, 0%, 100%, 0.18);
-    --glass-bg-strong: hsla(0, 0%, 100%, 0.38);
-    --glass-border: hsla(0, 0%, 100%, 0.26);
-    --glass-border-strong: hsla(0, 0%, 100%, 0.45);
-    --glass-blur: 18px;
-    --glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
-    --glass-radius: 0.9rem;
-  }
+  
 
   * {
     @apply border-border;
