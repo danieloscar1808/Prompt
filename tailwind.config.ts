@@ -2,13 +2,9 @@ import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
 
 const config: Config = {
-  darkMode: false,
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{ts,tsx}",
-    "./src/pages/**/*.{ts,tsx}",
-    "./src/features/**/*.{ts,tsx}"
   ],
   theme: {
     extend: {
@@ -43,11 +39,6 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      boxShadow: {
-        soft: "var(--shadow-soft)",
-        card: "var(--shadow-card)",
-        button: "var(--shadow-button)",
-      },
       fontFamily: {
         sans: "var(--font-sans)",
         serif: "var(--font-serif)",
@@ -55,9 +46,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    animate,
-  ],
+  plugins: [animate],
 };
 
 export default config;

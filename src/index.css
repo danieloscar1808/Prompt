@@ -1,87 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+/* ===========================
+   GOOGLE FONTS IMPORTS (DEBEN IR ARRIBA)
+   =========================== */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
 
+/* ===========================
+   TAILWIND BASE
+   =========================== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
+/* ===========================
+   ROOT VARIABLES — MODO CLARO ÚNICO
+   =========================== */
 @layer base {
   :root {
-    /* Electric blue vibrant palette */
     --background: 209 40% 96%;
     --foreground: 222 47% 11%;
     --card: 210 40% 98%;
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
+
     --primary: 200 98% 39%;
     --primary-foreground: 204 100% 97%;
+
     --secondary: 215 24% 26%;
     --secondary-foreground: 210 40% 98%;
+
     --muted: 215 20% 65%;
     --muted-foreground: 222 47% 11%;
+
     --accent: 210 40% 98%;
     --accent-foreground: 215 19% 34%;
+
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
-    --recording: 0 85% 60%;
-    --recording-glow: 0 80% 65%;
+
     --success: 160 60% 45%;
     --success-foreground: 0 0% 100%;
+
     --border: 212 26% 83%;
     --input: 212 26% 83%;
     --ring: 200 98% 39%;
+
     --radius: 0.5rem;
-    --shadow-soft: 0 4px 20px -4px hsl(217 90% 20% / 0.3);
-    --shadow-card: 0 2px 12px -2px hsl(217 90% 20% / 0.2);
-    --shadow-button: 0 4px 14px -4px hsl(220 10% 30% / 0.4);
-    --sidebar-background: 217 85% 50%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 200 98% 39%;
-    --sidebar-primary-foreground: 204 100% 97%;
-    --sidebar-accent: 215 24% 26%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 212 26% 83%;
-    --sidebar-ring: 200 98% 39%;
-    --chart-1: 198 93% 59%;
-    --chart-2: 213 93% 67%;
-    --chart-3: 215 20% 65%;
-    --chart-4: 215 16% 46%;
-    --chart-5: 215 19% 34%;
-    --sidebar: 210 40% 98%;
-    --font-sans: 'Inter', ui-sans-serif;
-    --font-serif: 'Lora', ui-serif;
-    --font-mono: 'Space Mono', ui-monospace;
-    --shadow-2xs: 0 1px 3px hsl(0 0% 0% / 0.05);
-    --shadow-xs: 0 1px 3px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow: 0 1px 3px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md: 0 1px 3px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-    --shadow-lg: 0 1px 3px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-    --shadow-xl: 0 1px 3px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-    --shadow-2xl: 0 1px 3px hsl(0 0% 0% / 0.25);
-    --tracking-normal: 0em;
-    --spacing: 0.25rem;
+
+    /* Glass effect variables */
     --glass-bg: hsla(0, 0%, 100%, 0.25);
-    --glass-border: hsla(0, 0%, 100%, 0.25);
-    --glass-blur: 16px;
-    --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    --glass-bg: hsla(0, 0%, 100%, 0.18);
     --glass-bg-strong: hsla(0, 0%, 100%, 0.38);
     --glass-border: hsla(0, 0%, 100%, 0.26);
     --glass-border-strong: hsla(0, 0%, 100%, 0.45);
     --glass-blur: 18px;
     --glass-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
     --glass-radius: 0.9rem;
-  }
 
-  
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(217 90% 20% / 0.3);
+    --shadow-card: 0 2px 12px -2px hsl(217 90% 20% / 0.2);
+    --shadow-button: 0 4px 14px -4px hsl(220 10% 30% / 0.4);
+
+    --font-sans: 'Inter', ui-sans-serif;
+    --font-serif: 'Lora', ui-serif;
+    --font-mono: 'Space Mono', ui-monospace;
+  }
 
   * {
     @apply border-border;
@@ -89,8 +76,6 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
-
     background-image: linear-gradient(135deg, #0a3cff 0%, #1f9bff 50%, #0a3cff 100%);
     background-size: cover;
     background-attachment: fixed;
@@ -101,220 +86,37 @@
   }
 }
 
+/* ===========================
+   UTILITIES
+   =========================== */
 @layer utilities {
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .shadow-card { box-shadow: var(--shadow-card); }
   .shadow-button { box-shadow: var(--shadow-button); }
 }
 
-@keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-@keyframes pulse-dot {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-@keyframes dropdown-fade-slide {
-  0% {opacity: 0;transform: translateY(-6px) scale(0.98);}
-  100% {opacity: 1;transform: translateY(0) scale(1);}
-}
-
-.animate-pulse-ring { animation: pulse-ring 1.5s cubic-bezier(0.4,0,0.6,1) infinite; }
-.animate-pulse-dot { animation: pulse-dot 1s cubic-bezier(0.4,0,0.6,1) infinite; }
-
-.transition-spring {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
+/* ===========================
+   GLASS UI COMPONENTS
+   =========================== */
 @layer components {
-  /* Fondo global para todos los popovers, dropdowns y select menus */
-  .popover-content,
-  .dropdown-menu,
-  .select-content,
-  .command-list,
-  .command-item,
-  .dialog-content,
-  .menu-content,
-  [role="menu"],
-  [role="listbox"],
-  [role="dialog"],
-  [data-radix-popper-content-wrapper] {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: 1px solid hsl(0 0% 85%);
-    border-radius: 0.75rem;
-    padding: 4px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    animation: dropdown-fade-slide 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  /* Opciones cuando se pasan con hover o quedan activas */
-  .command-item:hover,
-  .command-item[data-highlighted="true"],
-  .select-item[data-state="active"],
-  .dropdown-menu-item:hover {
-    background-color: #f4f4f4 !important;
-    color: #000000 !important;
-    border-radius: 0.5rem;
-  }
-}
-
-@layer components {
-  /* Estilo global para todos los triggers de Select, Dropdown, Popover, Combobox */
-  .select-trigger,
-  .dropdown-trigger,
-  .popover-trigger,
-  .command-trigger,
-  [data-radix-trigger] {
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: 1px solid hsl(0 0% 80%);
-    border-radius: 0.75rem;
-    padding: 0.60rem 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px;
-    transition: all 0.15s ease;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-  }
-
-  /* Hover premium */
-  .select-trigger:hover,
-  .dropdown-trigger:hover,
-  .popover-trigger:hover,
-  .command-trigger:hover,
-  [data-radix-trigger]:hover {
-    border-color: hsl(0 0% 60%);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    background-color: #fafafa !important;
-  }
-
-  /* Estado activo cuando el menú está abierto */
-  [data-state="open"].select-trigger,
-  [data-state="open"].dropdown-trigger,
-  [data-state="open"].popover-trigger,
-  [data-state="open"][data-radix-trigger] {
-    border-color: hsl(215 15% 65%);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
-  }
-
-  /* Animación del ícono del trigger (flecha) */
-  .trigger-icon {
-    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  [data-state="open"] .trigger-icon {
-    transform: rotate(180deg);
-  }
-}
-
-@layer components {
-
-  /* TRIGGER GLASS EFFECT */
-  .select-trigger,
-  .dropdown-trigger,
-  .popover-trigger,
-  .command-trigger,
-  [data-radix-trigger] {
-    background: var(--glass-bg) !important;
-    color: #ffffff !important;
-    border: 1px solid var(--glass-border);
-    border-radius: 0.75rem;
-    padding: 0.65rem 0.85rem;
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    box-shadow: var(--glass-shadow);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-  }
-
-  /* HOVER GLASS */
-  .select-trigger:hover,
-  .dropdown-trigger:hover,
-  .popover-trigger:hover,
-  .command-trigger:hover,
-  [data-radix-trigger]:hover {
-    background: hsla(0, 0%, 100%, 0.35) !important;
-    border-color: hsla(0, 0%, 100%, 0.45);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  }
-
-  /* ESTADO: MENÚ ABIERTO */
-  [data-state="open"].select-trigger,
-  [data-state="open"].dropdown-trigger,
-  [data-state="open"].popover-trigger,
-  [data-state="open"][data-radix-trigger] {
-    background: hsla(0, 0%, 100%, 0.40) !important;
-    border-color: hsla(0, 0%, 100%, 0.60);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
-  }
-
-  /* ICON ANIMATION */
-  .trigger-icon {
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  [data-state="open"] .trigger-icon {
-    transform: rotate(180deg);
-  }
-
-  /* GLASS MENU PANEL */
-  .popover-content,
-  .dropdown-menu,
-  .select-content,
-  .command-list,
-  .menu-content,
-  [data-radix-popper-content-wrapper] {
-    background: hsla(0, 0%, 100%, 0.70) !important;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-radius: 0.75rem;
-    border: 1px solid hsla(0, 0%, 100%, 0.40);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.20);
-    animation: dropdown-fade-slide 0.20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  /* Hover de items en glass panel */
-  .command-item:hover,
-  .command-item[data-highlighted="true"],
-  .select-item[data-state="active"],
-  .dropdown-menu-item:hover {
-    background: hsla(0, 0%, 100%, 0.45) !important;
-    backdrop-filter: blur(22px);
-    color: #000000 !important;
-    border-radius: 0.5rem;
-  }
-
-  @layer components {
-
-  /* CARDS GLASS */
   .card-glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
     border-radius: var(--glass-radius);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     padding: 1rem;
   }
 
-  /* PANEL GLASS (ideal para contenedores grandes) */
   .panel-glass {
     background: var(--glass-bg-strong);
     backdrop-filter: blur(calc(var(--glass-blur) + 4px));
-    -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px));
-    border: 1px solid var(--glass-border-strong);
     border-radius: calc(var(--glass-radius) + 0.25rem);
+    border: 1px solid var(--glass-border-strong);
     padding: 1.2rem;
     box-shadow: var(--glass-shadow);
   }
-}
-@layer components {
+
   .input-glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
@@ -330,9 +132,7 @@
     border-color: var(--glass-border-strong);
     box-shadow: 0 0 0 3px rgba(255,255,255,0.12);
   }
-}
 
-@layer components {
   .btn-glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
@@ -354,16 +154,7 @@
   .btn-glass:active {
     transform: scale(0.98);
   }
-}
-@layer components {
-  .sidebar-glass {
-    background: var(--glass-bg-strong);
-    backdrop-filter: blur(calc(var(--glass-blur) + 4px));
-    border-right: 1px solid var(--glass-border-strong);
-    box-shadow: 8px 0 30px rgba(0,0,0,0.18);
-  }
-}
-@layer components {
+
   .textarea-glass {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -371,108 +162,25 @@
     border-radius: var(--glass-radius);
     padding: 0.85rem;
     color: #ffffff;
-    transition: all 0.2s ease;
     min-height: 160px;
+    transition: all 0.2s ease;
   }
-}
-@layer components {
+
   .glass-border {
     border: 1px solid var(--glass-border);
     border-radius: var(--glass-radius);
     backdrop-filter: blur(var(--glass-blur));
   }
 }
+
+/* ===========================
+   ANIMACIONES
+   =========================== */
 @keyframes glass-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(4px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  0% { opacity: 0; transform: translateY(4px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .glass-animate {
   animation: glass-fade-in 0.25s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-@layer components {
-
-  .install-button-glass {
-    background: var(--glass-bg-strong);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--glass-border-strong);
-    border-radius: 0.9rem;
-    color: #ffffff;
-    font-weight: 600;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    animation: glass-fade-in 0.25s ease forwards;
-  }
-
-  .install-button-glass:hover {
-    background: hsla(0,0%,100%,0.50);
-    transform: translateY(-2px);
-    border-color: hsla(0,0%,100%,0.65);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.32);
-  }
-
-  .install-button-glass:active {
-    transform: scale(0.97);
-  }
-}
-@layer components {
-  .fab-install-button {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 9999;
-
-    padding: 0.85rem 1.4rem;
-    font-weight: 600;
-    border-radius: 1rem;
-    cursor: pointer;
-
-    /* GLASS EFFECT */
-    background: hsla(0, 0%, 100%, 0.28);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid hsla(0, 0%, 100%, 0.45);
-    color: #ffffff;
-
-    /* SOMBRA PREMIUM */
-    box-shadow: 0 10px 32px rgba(0,0,0,0.3);
-
-    /* ANIMACIÓN DE ENTRADA */
-    transform: translateY(20px);
-    opacity: 0;
-    animation: fab-appear 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
-
-    transition: all 0.25s ease;
-  }
-
-  .fab-install-button:hover {
-    background: hsla(0, 0%, 100%, 0.38);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.4);
-    transform: translateY(-2px);
-  }
-
-  @keyframes fab-appear {
-    from {
-      opacity: 0;
-      transform: translateY(22px) scale(0.97);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-}
 }
