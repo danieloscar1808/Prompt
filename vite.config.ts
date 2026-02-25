@@ -14,31 +14,22 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
 
-      // ❗IMPORTANTE: No incluimos background.png ni ningún asset obsoleto
-      includeAssets: [
-        //"favicon.ico",
-        "robots.txt",
-        "icons/icon-72.png",
-        "icons/icon-96.png",
-        "icons/icon-128.png",
-        "icons/icon-192.png",
-        "icons/icon-256.png",
-        "icons/icon-384.png",
-        "icons/icon-512.png",
-        "icons/icon-1024.png",
-      ],
+  // Desactiva realmente el service worker
+  strategies: "injectManifest",
+  srcDir: "src",
+  filename: "sw-disabled.js",
+  injectRegister: false,
 
-      manifest: {
-        name: "Prompt AI",
-        short_name: "Prompt",
-        description: "Aplicación PWA optimizada para generación de prompts y herramientas AI.",
-        theme_color: "#000000",
-        background_color: "#000000",
-        scope: "./",
-        start_url: "./",
-        display: "standalone",
-        orientation: "portrait",
-
+  manifest: {
+    name: "Prompt AI",
+    short_name: "Prompt",
+    description: "Aplicación PWA optimizada para generación de prompts.",
+    theme_color: "#ffffff",
+    background_color: "#ffffff",
+    scope: "./",
+    start_url: "./",
+    display: "standalone",
+    orientation: "portrait",
         icons: [
           { src: "icons/icon-1024.png", sizes: "1024x1024", type: "image/png", purpose: "any maskable" },
           { src: "icons/icon-72.png",  sizes: "72x72",   type: "image/png" },
