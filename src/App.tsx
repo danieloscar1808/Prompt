@@ -22,7 +22,6 @@ const App = () => (
         </BrowserRouter>
         <InstallButton />
       </TooltipProvider>
-    </ThemeProvider>
   </QueryClientProvider>
 );
 
