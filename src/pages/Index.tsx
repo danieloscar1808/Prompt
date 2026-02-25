@@ -1,17 +1,43 @@
 import { useState, useMemo } from "react";
-import { User, Target, FileText, Ban, LayoutList, RotateCcw, ChevronDown, Sparkles, Brain, Mic } from "lucide-react";
+import {
+  User,
+  Target,
+  FileText,
+  Ban,
+  LayoutList,
+  RotateCcw,
+  ChevronDown,
+  Sparkles,
+  Brain
+} from "lucide-react";
 
 import { Header } from "@/components/Header";
 import { PromptField } from "@/components/PromptField";
 import { PromptPreview } from "@/components/PromptPreview";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
+import VoiceButton from "@/components/VoiceRecordButton";
+
+// ========================
+// OPCIONES DE LOS SELECTS
+// ========================
 const ROL_OPTIONS = ["Experto en", "Crítico/Revisor", "Tutor/Mentor", "Redactor Creativo"];
 const TAREA_OPTIONS = ["Crear", "Redactar", "Analizar", "Resumir", "Traducir"];
 const METODO_OPTIONS = [
-  { label: "Paso a paso (Chain of Thought)", value: "Explica y piensa paso a paso antes de dar tu respuesta final" },
-  { label: "3 soluciones (Tree of Thoughts)", value: "Imagina 3 soluciones diferentes y elige la mejor" },
+  {
+    label: "Paso a paso (Chain of Thought)",
+    value: "Explica y piensa paso a paso antes de dar tu respuesta final"
+  },
+  {
+    label: "3 soluciones (Tree of Thoughts)",
+    value: "Imagina 3 soluciones diferentes y elige la mejor"
+  }
 ];
 const CONTEXTO_OPTIONS = ["para estudiantes", "para principiantes", "para una empresa pequeña"];
 const RESTRICCIONES_OPTIONS = ["máximo 200 palabras", "lenguaje simple", "evitar tecnicismos"];
@@ -23,6 +49,9 @@ const AI_OPTIONS = [
   { name: "Copilot", icon: "🚀", description: "Formato técnico con etiquetas" }
 ];
 
+// ========================
+// GENERADOR DE PROMPT
+// ========================
 interface PromptFields {
   rol: string;
   tarea: string;
@@ -47,8 +76,12 @@ const generatePrompt = (fields: PromptFields, ai: string): string => {
   return parts.join("\n\n");
 };
 
+// ========================
+// COMPONENTE PRINCIPAL
+// ========================
 export default function Index() {
   const [selectedAI, setSelectedAI] = useState(AI_OPTIONS[0]);
+
   const [fields, setFields] = useState<PromptFields>({
     rol: "",
     tarea: "",
@@ -58,11 +91,32 @@ export default function Index() {
     formato: ""
   });
 
+  // ********** Estado y funciones del botón de grabación **********
+  const [isRecording, setIsRecording] = useState(false);
+
+  const startRecording = () => {
+    console.log("🎙️ Iniciando grabación...");
+    setIsRecording(true);
+  };
+
+  const stopRecording = () => {
+    console.log("🟥 Deteniendo grabación...");
+    setIsRecording(false);
+  };
+  // ***************************************************************
+
   const updateField = (field: keyof PromptFields) => (value: string) =>
     setFields((prev) => ({ ...prev, [field]: value }));
 
   const resetFields = () =>
-    setFields({ rol: "", tarea: "", metodo: "", contexto: "", restricciones: "", formato: "" });
+    setFields({
+      rol: "",
+      tarea: "",
+      metodo: "",
+      contexto: "",
+      restricciones: "",
+      formato: ""
+    });
 
   const generatedPrompt = useMemo(
     () => generatePrompt(fields, selectedAI.name),
@@ -73,7 +127,7 @@ export default function Index() {
 
   return (
     <div
-      className="min-h-screen px-4 pb-10 sm:pb-16 bg-cover bg-center bg-fixed relative"
+      className="min-h-screen px-4 pb-20 sm:pb-24 bg-cover bg-center bg-fixed relative"
       style={{ backgroundImage: "url('/images/background.png')" }}
     >
       {/* Glow futurista */}
@@ -82,12 +136,13 @@ export default function Index() {
       <Header />
 
       <main className="relative max-w-xl mx-auto space-y-6 z-10">
-
         {/* AI SELECTOR */}
         <div className="glass p-4 rounded-2xl text-center shadow-xl">
           <div className="flex items-center justify-center gap-2">
             <Sparkles className="text-primary animate-pulse" size={20} />
-            <span className="text-lg font-semibold text-white/90">Optimizar para:</span>
+            <span className="text-lg font-semibold text-white/90">
+              Optimizar para:
+            </span>
           </div>
 
           <DropdownMenu>
@@ -117,14 +172,50 @@ export default function Index() {
           </DropdownMenu>
         </div>
 
-        {/* FORM CARDS */}
+        {/* FORM FIELDS */}
         <div className="glass rounded-2xl p-6 space-y-6 shadow-2xl">
-          <PromptField label="Rol" placeholder="Ej: experto en marketing..." value={fields.rol} onChange={updateField("rol")} icon={<User />} />
-          <PromptField label="Tarea" placeholder="Ej: crear un plan..." value={fields.tarea} onChange={updateField("tarea")} icon={<Target />} />
-          <PromptField label="Método" placeholder="Selecciona técnica..." value={fields.metodo} onChange={updateField("metodo")} icon={<Brain />} />
-          <PromptField label="Contexto" placeholder="Ej: para una tienda..." value={fields.contexto} onChange={updateField("contexto")} icon={<FileText />} />
-          <PromptField label="Restricciones" placeholder="Ej: lenguaje simple..." value={fields.restricciones} onChange={updateField("restricciones")} icon={<Ban />} />
-          <PromptField label="Formato" placeholder="Ej: tabla markdown..." value={fields.formato} onChange={updateField("formato")} icon={<LayoutList />} />
+          <PromptField
+            label="Rol"
+            placeholder="Ej: experto en marketing..."
+            value={fields.rol}
+            onChange={updateField("rol")}
+            icon={<User />}
+          />
+          <PromptField
+            label="Tarea"
+            placeholder="Ej: crear un plan..."
+            value={fields.tarea}
+            onChange={updateField("tarea")}
+            icon={<Target />}
+          />
+          <PromptField
+            label="Método"
+            placeholder="Selecciona técnica..."
+            value={fields.metodo}
+            onChange={updateField("metodo")}
+            icon={<Brain />}
+          />
+          <PromptField
+            label="Contexto"
+            placeholder="Ej: para una tienda..."
+            value={fields.contexto}
+            onChange={updateField("contexto")}
+            icon={<FileText />}
+          />
+          <PromptField
+            label="Restricciones"
+            placeholder="Ej: lenguaje simple..."
+            value={fields.restricciones}
+            onChange={updateField("restricciones")}
+            icon={<Ban />}
+          />
+          <PromptField
+            label="Formato"
+            placeholder="Ej: tabla markdown..."
+            value={fields.formato}
+            onChange={updateField("formato")}
+            icon={<LayoutList />}
+          />
 
           {/* RESET */}
           <Button
@@ -139,9 +230,18 @@ export default function Index() {
 
         {/* PREVIEW */}
         <PromptPreview prompt={generatedPrompt} isEmpty={isEmpty} />
+
+        {/* 🎤 BOTÓN DE GRABAR — AHORA UBICADO CORRECTAMENTE */}
+        <div className="flex justify-center mt-4 mb-10">
+          <VoiceButton
+            isRecording={isRecording}
+            onStart={startRecording}
+            onStop={stopRecording}
+          />
+        </div>
       </main>
 
-      {/* Estilos Glass + Glow */}
+      {/* Estilos Glass */}
       <style>{`
         .glass {
           background: rgba(255,255,255,0.08);
@@ -154,11 +254,6 @@ export default function Index() {
           border: 1px solid rgba(255,255,255,0.22);
         }
       `}</style>
-      <VoiceButton
-      isRecording={isRecording}
-      onStart={startRecording}
-      onStop={stopRecording}
-      />
     </div>
   );
 }
