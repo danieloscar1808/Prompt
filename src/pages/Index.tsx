@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 const ROL_OPTIONS = ["Experto en", "Crítico/Revisor", "Tutor/Mentor", "Redactor Creativo", "Analista de Datos", "Traductor/Localizador", "Programador Senior", "Consultor Estratégico", "Entrevistador/Reclutador", "Editor de Estilo"];
-const TAREA_OPTIONS = ["Redactar", "Analizar", "Resumir", "Traducir", "Explicar", "Comparar", "Generar ideas", "Corregir", "Optimizar", "Investigar"];
+const TAREA_OPTIONS = ["Crear", "Redactar", "Analizar", "Resumir", "Traducir", "Explicar", "Comparar", "Generar ideas", "Corregir", "Optimizar", "Investigar"];
 const METODO_OPTIONS = [
   { label: "Paso a paso (Chain of Thought)", value: "Explica y piensa paso a paso antes de dar tu respuesta final" },
   { label: "3 soluciones (Tree of Thoughts)", value: "Imagina 3 soluciones diferentes, evalúa los pros y contras de cada una y selecciona la más eficiente" },
@@ -16,7 +16,7 @@ const METODO_OPTIONS = [
 ];
 const CONTEXTO_OPTIONS = ["para una empresa pequeña", "para estudiantes", "para redes sociales", "para un blog", "para una presentación", "para un informe académico", "para un público técnico", "para principiantes", "en español latinoamericano", "con tono profesional"];
 const RESTRICCIONES_OPTIONS = ["evitar jerga técnica", "máximo 200 palabras", "sin listas", "solo respuestas cortas", "no usar ejemplos", "sin repeticiones", "evitar superlativos", "sin citas textuales", "lenguaje simple", "sin emojis"];
-const FORMAT_OPTIONS = ["Resumen Ejecutivo", "Informe Estructurado", "Análisis Comparativo", "Preguntas y Respuestas", "Guion de Presentación", "Tablas Markdown", "Listas Jerárquicas", "Diagrama de Flujo", "Análisis FODA", "Markdown (.md)", "JSON / XML", "CSV", "Código LaTeX", "HTML"];
+const FORMAT_OPTIONS = ["Resumen Ejecutivo", "Informe Estructurado", "Informe Técnico", "Análisis Comparativo", "Preguntas y Respuestas", "Guion de Presentación", "Tablas Markdown", "Listas Jerárquicas", "Diagrama de Flujo", "Análisis FODA", "Markdown (.md)", "JSON / XML", "CSV", "Código LaTeX", "HTML"];
 const AI_OPTIONS = [{
   name: "ChatGPT",
   icon: "🤖",
