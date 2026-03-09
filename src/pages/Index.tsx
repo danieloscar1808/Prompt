@@ -105,8 +105,6 @@ const RESTRICCIONES_OPTIONS = [
 
 const FORMAT_OPTIONS = [
   "Resumen Ejecutivo",
-  "Explicacion Estructurada",
-  "Bloque de Código con comentarios"
   "Informe Estructurado",
   "Informe Técnico",
   "Análisis Comparativo",

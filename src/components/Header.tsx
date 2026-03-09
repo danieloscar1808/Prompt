@@ -5,12 +5,12 @@ export const Header = () => {
       {/* Selector de tema eliminado */}
 
       <div className="flex items-center justify-center gap-2 sm:gap-3 mb-1 sm:mb-2">
-        <h1 className="text-4xl text-destructive-foreground font-semibold text-center sm:text-xl font-serif">
+        <h1 className="text-4xl text-black font-semibold text-center sm:text-xl font-serif">
           Prompt Generator
         </h1>
       </div>
 
-      <p className="text-xs max-w-xs mx-auto text-destructive-foreground sm:text-lg font-serif">
+      <p className="text-xs max-w-xs mx-auto text-black sm:text-lg font-serif">
         Prompts para IA usando tu voz
       </p>
     </header>
