@@ -29,7 +29,7 @@ import {
 
 const ROL_OPTIONS = [
   "Experto en",
-  "Crítico/Revisor",
+  "Desarrollador de aplicaciones PWA",
   "Tutor/Mentor",
   "Redactor Creativo",
   "Analista de Datos",
@@ -105,6 +105,8 @@ const RESTRICCIONES_OPTIONS = [
 
 const FORMAT_OPTIONS = [
   "Resumen Ejecutivo",
+  "Explicacion Estructurada",
+  "Bloque de Código con comentarios"
   "Informe Estructurado",
   "Informe Técnico",
   "Análisis Comparativo",
