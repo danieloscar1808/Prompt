@@ -21,7 +21,7 @@ export default defineConfig({
         short_name: "Prompt",
         description: "Aplicación PWA optimizada para generación de prompts.",
         theme_color: "#0f172a",
-        background_color: ""#0f172a"",
+        background_color: "#0f172a",
         scope: "./",
         start_url: "./",
         display: "standalone",
