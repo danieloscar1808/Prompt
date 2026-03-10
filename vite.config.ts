@@ -15,11 +15,7 @@ export default defineConfig({
       injectRegister: null, // no genera sw-disabled.js
       disable: false,       // no desactiva PWA
 
-      // 🚫 ELIMINADO: NO usar injectManifest
-      // strategies: "injectManifest",
-      // srcDir: "src",
-      // filename: "sw-disabled.js",
-
+      
       manifest: {
         name: "Prompt AI",
         short_name: "Prompt",
