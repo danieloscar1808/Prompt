@@ -79,7 +79,7 @@
   position: fixed;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(99,102,241,0.15), transparent 70%);
+  background: radial-gradient(circle at top, #4f46e5, #1e1b4b);
   top: -200px;
   left: -200px;
   z-index: -1;
