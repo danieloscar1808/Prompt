@@ -79,7 +79,7 @@
   position: fixed;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle at top, #4f46e5, #1e1b4b);
+  background: radial-gradient(135deg, #2563eb, #7c3aed);
   top: -200px;
   left: -200px;
   z-index: -1;
@@ -90,7 +90,7 @@ body::after {
   position: fixed;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 70%);
+  background: radial-gradient(135deg, #2563eb, #7c3aed);
   bottom: -200px;
   right: -200px;
   z-index: -1;
