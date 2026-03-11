@@ -238,7 +238,7 @@ const Index = () => {
         {/* AI Selector */}
         <div className="flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.02]">
           <Sparkles size={16} className="text-primary animate-pulse" />
-          <span className="text-base text-foreground font-serif">
+          <span className="text-base text-foreground font-serif text-white">
             Optimizar para:
           </span>
 

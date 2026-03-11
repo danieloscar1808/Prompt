@@ -70,12 +70,12 @@ export const PromptField = ({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
             <span className="text-primary flex-shrink-0">{icon}</span>
-            <label className="font-semibold text-foreground text-sm sm:text-base font-serif">
+            <label className="font-semibold text-white text-sm sm:text-base font-serif">
               {label}
             </label>
           </div>
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-            <p className="text-xs sm:text-sm text-muted-foreground font-serif">{description}</p>
+            <p className="text-xs sm:text-sm text-white/80 font-serif">{description}</p>
             {descriptionAction}
           </div>
 

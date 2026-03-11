@@ -31,7 +31,7 @@ export const PromptPreview = ({ prompt, isEmpty }: PromptPreviewProps) => {
       <div className="flex items-center justify-between mb-2 sm:mb-3 gap-2">
         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
           <Sparkles size={18} className="text-primary flex-shrink-0 sm:w-5 sm:h-5" />
-          <h2 className="font-display font-semibold text-foreground text-sm sm:text-base truncate">
+          <h2 className="font-display font-semibold text-foreground text-sm sm:text-base truncate text-white">
             Prompt Generado
           </h2>
         </div>
@@ -53,7 +53,7 @@ export const PromptPreview = ({ prompt, isEmpty }: PromptPreviewProps) => {
             </>
           ) : (
             <>
-              <Copy size={14} className="sm:w-4 sm:h-4" />
+              <Copy size={14} className="sm:w-4 sm:h-4 text white" />
               Copiar
             </>
           )}
