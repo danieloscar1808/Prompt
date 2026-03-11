@@ -69,7 +69,7 @@ export const PromptField = ({
         {/* Icon and Label */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
-            <span className="text-primary flex-shrink-0">{icon}</span>
+            <span className="text-white/90 flex-shrink-0">{icon}</span>
             <label className="font-semibold text-white text-sm sm:text-base font-serif">
               {label}
             </label>
