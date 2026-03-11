@@ -41,7 +41,7 @@ export const PromptPreview = ({ prompt, isEmpty }: PromptPreviewProps) => {
           variant="outline"
           size="sm"
           className={cn(
-            "gap-1.5 sm:gap-2 transition-all text-xs sm:text-sm px-2 sm:px-3 h-8 sm:h-9 flex-shrink-0",
+            "gap-1.5 sm:gap-2 transition-all text-xs sm:text-sm px-2 sm:px-3 h-8 sm:h-9 flex-shrink-0 text-white border-white/40 hover:bg-white/10",
             copied && "bg-success text-success-foreground border-success"
           )}
         >
@@ -53,7 +53,7 @@ export const PromptPreview = ({ prompt, isEmpty }: PromptPreviewProps) => {
             </>
           ) : (
             <>
-              <Copy size={14} className="sm:w-4 sm:h-4 text white" />
+              <Copy size={14} className="sm:w-4 sm:h-4 text-white" />
               Copiar
             </>
           )}

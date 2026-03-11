@@ -305,7 +305,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-6 w-6 hover:shadow"
+                  className="h-7 w-7 text-white border-white/50 bg-white/10 hover:bg-white/20 hover:border-white shadow-sm"
                 >
                   <ChevronDown size={14} />
                 </Button>
@@ -340,7 +340,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-6 w-6 hover:shadow"
+                  className="h-7 w-7 text-white border-white/50 bg-white/10 hover:bg-white/20 hover:border-white shadow-sm"
                 >
                   <ChevronDown size={14} />
                 </Button>
@@ -377,7 +377,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-6 w-6 hover:shadow"
+                  className="h-7 w-7 text-white border-white/50 bg-white/10 hover:bg-white/20 hover:border-white shadow-sm"
                 >
                   <ChevronDown size={14} />
                 </Button>
@@ -411,7 +411,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-6 w-6 hover:shadow"
+                  className="h-7 w-7 text-white border-white/50 bg-white/10 hover:bg-white/20 hover:border-white shadow-sm"
                 >
                   <ChevronDown size={14} />
                 </Button>
@@ -450,7 +450,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-6 w-6 hover:shadow"
+                  className="h-7 w-7 text-white border-white/50 bg-white/10 hover:bg-white/20 hover:border-white shadow-sm"
                 >
                   <ChevronDown size={14} />
                 </Button>
@@ -489,7 +489,7 @@ const Index = () => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-6 w-6 hover:shadow"
+                  className="h-7 w-7 text-white border-white/50 bg-white/10 hover:bg-white/20 hover:border-white shadow-sm"
                 >
                   <ChevronDown size={14} />
                 </Button>
